@@ -65,5 +65,3 @@ RUN locale-gen en_US.UTF-8 && update-locale LANG=en_US.UTF-8
 
 # Timezone & memory limit
 RUN echo "date.timezone=Europe/Moscow" > /etc/php/7.3/cli/conf.d/date_timezone.ini
-# Goto temporary directory.
-WORKDIR /tmp
