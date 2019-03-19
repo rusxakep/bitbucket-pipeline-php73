@@ -1,9 +1,7 @@
 FROM ubuntu:18.04
 MAINTAINER Mikhail Baykov <mike@baikov.com>
-# Cloudflare DNS
 RUN echo "nameserver 1.1.1.1" | tee /etc/resolv.conf > /dev/null
 
-# Install system packages
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get upgrade -y && \
     DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -y && \
@@ -18,7 +16,6 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
         less \
         sudo
 
-# Install packages
 RUN DEBIAN_FRONTEND=noninteractive add-apt-repository ppa:ondrej/php -y && \
     DEBIAN_FRONTEND=noninteractive apt-get update
 
@@ -60,8 +57,5 @@ RUN apt-get clean -y && \
     apt-get autoclean -y && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# Ensure UTF-8
-RUN locale-gen en_US.UTF-8 && update-locale LANG=en_US.UTF-8
-
-# Timezone & memory limit
-RUN echo "date.timezone=Europe/Moscow" > /etc/php/7.3/cli/conf.d/date_timezone.ini
+RUN locale-gen en_US.UTF-8 && update-locale LANG=en_US.UTF-8 && echo "date.timezone=Europe/Moscow" > /etc/php/7.3/cli/conf.d/date_timezone.ini
+WORKDIR /tmp
