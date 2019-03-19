@@ -27,34 +27,34 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y software-properties-common
     DEBIAN_FRONTEND=noninteractive apt-get update
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
-    php-pear
-    php7.3-pgsql
-    php7.3-apcu
-    php7.3-http
-    php7.3-igbinary
-    php7.3-memcached
-    php7.3-msgpack
-    php7.3-opcache
-    php7.3-mysql
-    php7.3-zmq
-    php7.3-apcu-bc
-    php7.3-gd
-    php7.3-ctype
-    php7.3-bcmath
-    php7.3-curl
-    php7.3-dom
+    php-pear \
+    php7.3-pgsql \
+    php7.3-apcu \
+    php7.3-http \
+    php7.3-igbinary \
+    php7.3-memcached \
+    php7.3-msgpack \
+    php7.3-opcache \
+    php7.3-mysql \
+    php7.3-zmq \
+    php7.3-apcu-bc \
+    php7.3-gd \
+    php7.3-ctype \
+    php7.3-bcmath \
+    php7.3-curl \
+    php7.3-dom \
     php7.3-geoip \
-    php7.3-json
-    php7.3-bz2
-    php7.3-gmp
-    php7.3-intl
-    php7.3-zip
-    php7.3-xml
-    php7.3-mbstring
-    php7.3-pdo
-    php7.3-tokenizer
-    php7.3-cli
-    php7.3-xdebug
+    php7.3-json \
+    php7.3-bz2 \
+    php7.3-gmp \
+    php7.3-intl \
+    php7.3-zip \
+    php7.3-xml \
+    php7.3-mbstring \
+    php7.3-pdo \
+    php7.3-tokenizer \
+    php7.3-cli \
+    php7.3-xdebug \
     php7.3-soap \
     --no-install-recommends
 
