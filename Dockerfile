@@ -17,7 +17,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
         locales \
         less \
         sudo
-        
+
 # Install packages
 RUN DEBIAN_FRONTEND=noninteractive add-apt-repository ppa:ondrej/php -y && \
     DEBIAN_FRONTEND=noninteractive apt-get update
