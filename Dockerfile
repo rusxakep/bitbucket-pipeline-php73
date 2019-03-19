@@ -7,23 +7,19 @@ RUN echo "nameserver 1.1.1.1" | tee /etc/resolv.conf > /dev/null
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get upgrade -y && \
     DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -y && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y \
-        git \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+        software-properties-common \
         unzip \
-        mcrypt \
         wget \
         curl \
         openssl \
         ssh \
         locales \
         less \
-        composer \
-        sudo \
-        npm --no-install-recommends
-
+        sudo
+        
 # Install packages
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y software-properties-common --no-install-recommends && \
-    DEBIAN_FRONTEND=noninteractive add-apt-repository ppa:ondrej/php -y && \
+RUN DEBIAN_FRONTEND=noninteractive add-apt-repository ppa:ondrej/php -y && \
     DEBIAN_FRONTEND=noninteractive apt-get update
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
@@ -56,6 +52,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
     php7.3-cli \
     php7.3-xdebug \
     php7.3-soap \
+    composer \
     --no-install-recommends
 
 RUN apt-get clean -y && \
