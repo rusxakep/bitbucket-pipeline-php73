@@ -1,6 +1,7 @@
 FROM ubuntu:18.04
 MAINTAINER Mikhail Baykov <mike@baikov.com>
-ENV HOME /root
+
+ARG MYSQL_ROOT_PASS=root
 RUN echo "nameserver 1.1.1.1" | tee /etc/resolv.conf > /dev/null
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
@@ -12,10 +13,9 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
         wget \
         curl \
         openssl \
-        ssh \
         locales \
-        less \
         composer \
+        mysql-server \
         sudo
 
 RUN DEBIAN_FRONTEND=noninteractive add-apt-repository ppa:ondrej/php -y && \
@@ -56,7 +56,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
 RUN apt-get clean -y && \
     apt-get autoremove -y && \
     apt-get autoclean -y && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
+    rm /var/lib/mysql/ib_logfile*
 
 RUN locale-gen en_US.UTF-8 && update-locale LANG=en_US.UTF-8 && echo "date.timezone=Europe/Moscow" > /etc/php/7.3/cli/conf.d/date_timezone.ini
 WORKDIR /tmp
