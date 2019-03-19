@@ -1,5 +1,6 @@
 FROM ubuntu:18.04
 MAINTAINER Mikhail Baykov <mike@baikov.com>
+ENV HOME /root
 RUN echo "nameserver 1.1.1.1" | tee /etc/resolv.conf > /dev/null
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
@@ -14,6 +15,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
         ssh \
         locales \
         less \
+        composer \
         sudo
 
 RUN DEBIAN_FRONTEND=noninteractive add-apt-repository ppa:ondrej/php -y && \
@@ -49,7 +51,6 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
     php7.3-cli \
     php7.3-xdebug \
     php7.3-soap \
-    composer \
     --no-install-recommends
 
 RUN apt-get clean -y && \
